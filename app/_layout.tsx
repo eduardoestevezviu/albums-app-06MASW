@@ -6,7 +6,7 @@ export const unstable_settings = {
   anchor: '(tabs)',
 };
 
-// Layout raíz: define el Stack de navegación principal de la app.
+// Layout raíz: define el Stack de navegación principal de la app
 export default function RootLayout() {
   return (
     <>
@@ -19,13 +19,13 @@ export default function RootLayout() {
         {/* Grupo de pestañas: es la pantalla principal */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
-        {/* Pantalla de creación, se abrirá como modal encima de las tabs. */}
+        {/* Pantalla de creación, se abrirá como modal encima de las tabs */}
         <Stack.Screen
           name="create"
           options={{ title: 'Nuevo álbum', presentation: 'modal' }}
         />
 
-        {/* Pantalla de edición de un álbum concreto. */}
+        {/* Pantalla de edición de un álbum concreto */}
         <Stack.Screen name="edit/[id]" options={{ title: 'Editar álbum' }} />
       </Stack>
       <StatusBar style="light" />

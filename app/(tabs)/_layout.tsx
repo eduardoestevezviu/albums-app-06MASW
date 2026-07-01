@@ -3,7 +3,7 @@ import { Tabs } from 'expo-router';
 
 import { HapticTab } from '@/components/haptic-tab';
 
-// Layout de las pestañas inferiores (Tabs) de la aplicación.
+// Layout de las pestañas inferiores (Tabs) de la aplicación
 export default function TabLayout() {
   return (
     <Tabs
