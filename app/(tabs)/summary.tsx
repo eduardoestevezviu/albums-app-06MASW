@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function AlbumListScreen() {
+export default function SummaryScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Mi colección de álbumes</Text>
+      <Text style={styles.text}>Resumen de la colección</Text>
     </View>
   );
 }
