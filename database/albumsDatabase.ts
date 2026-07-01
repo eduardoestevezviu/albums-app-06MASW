@@ -7,6 +7,7 @@
 
 import { Album, AlbumInput } from '@/types/album';
 import * as SQLite from 'expo-sqlite';
+import { seedAlbums } from './seedData';
 
 const DATABASE_NAME = 'albums.db';
 
@@ -104,4 +105,23 @@ export async function updateAlbum(id: number, album: AlbumInput): Promise<void> 
 export async function deleteAlbum(id: number): Promise<void> {
   const db = await getDatabase();
   await db.runAsync('DELETE FROM albums WHERE id = ?', id);
+}
+
+/**
+ * Seeder para poblar la base de datos con datos de ejemplo si está vacía
+ */
+export async function seedDatabaseIfEmpty(): Promise<void> {
+  const db = await getDatabase();
+
+  const row = await db.getFirstAsync<{ total: number }>(
+    'SELECT COUNT(*) AS total FROM albums'
+  );
+
+  if (row && row.total > 0) {
+    return;
+  }
+
+  for (const album of seedAlbums) {
+    await insertAlbum(album);
+  }
 }

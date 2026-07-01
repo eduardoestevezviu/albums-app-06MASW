@@ -9,6 +9,7 @@ import {
   deleteAlbum,
   fetchAllAlbums,
   insertAlbum,
+  seedDatabaseIfEmpty,
   updateAlbum,
 } from '@/database/albumsDatabase';
 import { Album, AlbumInput } from '@/types/album';
@@ -25,6 +26,7 @@ export function useAlbums() {
   const loadAlbums = useCallback(async () => {
     setIsLoading(true);
     try {
+      await seedDatabaseIfEmpty();
       const storedAlbums = await fetchAllAlbums();
       setAlbums(storedAlbums);
     } finally {
