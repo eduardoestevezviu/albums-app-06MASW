@@ -51,3 +51,22 @@ export const Fonts = Platform.select({
     mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
   },
 });
+
+
+// ---------------------------------------------------------------
+// Constantes propias de la app (paleta, géneros y estados)
+// ---------------------------------------------------------------
+
+// Paleta de colores 
+export const colors = {
+  background: '#1a1625',    
+  surface: '#251f36',       
+  surfaceLight: '#322a47', 
+  primary: '#c084fc',       
+  primaryDark: '#9333ea',   
+  text: '#f4f1fa',          
+  textMuted: '#a599c4',    
+  border: '#3d3454',        
+  danger: '#f87171',        
+  star: '#fbbf24',         
+};
