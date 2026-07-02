@@ -1,7 +1,5 @@
-import { seedDatabaseIfEmpty } from '@/database/albumsDatabase';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 export const unstable_settings = {
@@ -10,10 +8,6 @@ export const unstable_settings = {
 
 // Layout raíz: define el Stack de navegación principal de la app
 export default function RootLayout() {
-
-  useEffect(() => {
-    seedDatabaseIfEmpty();
-  }, []);
 
   return (
     <>

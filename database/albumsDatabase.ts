@@ -13,6 +13,8 @@ const DATABASE_NAME = 'albums.db';
 
 // Guardamos una única conexión y la reutilizamos en toda la app
 let database: SQLite.SQLiteDatabase | null = null;
+// Guardamos la promesa de sembrado para no repetirlo aunque se llame varias veces
+let seedPromise: Promise<void> | null = null;
 
 /**
  * Abre la base de datos (solo la primera vez) y garantiza que la
@@ -111,17 +113,24 @@ export async function deleteAlbum(id: number): Promise<void> {
  * Seeder para poblar la base de datos con datos de ejemplo si está vacía
  */
 export async function seedDatabaseIfEmpty(): Promise<void> {
-  const db = await getDatabase();
-
-  const row = await db.getFirstAsync<{ total: number }>(
-    'SELECT COUNT(*) AS total FROM albums'
-  );
-
-  if (row && row.total > 0) {
-    return;
+  // Si ya se está sembrando (o se sembró), reutilizamos esa misma promesa
+  if (seedPromise) {
+    return seedPromise;
   }
+  
+  seedPromise = (async () => {
+    const db = await getDatabase();
 
-  for (const album of seedAlbums) {
-    await insertAlbum(album);
-  }
+    const row = await db.getFirstAsync<{ total: number }>(
+      'SELECT COUNT(*) AS total FROM albums'
+    );
+
+    if (row && row.total > 0) {
+      return;
+    }
+
+    for (const album of seedAlbums) {
+      await insertAlbum(album);
+    }
+  })();
 }
