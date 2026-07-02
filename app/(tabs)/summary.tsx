@@ -12,9 +12,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function SummaryScreen() {
   const { albums, loadAlbums } = useAlbums();
+  const insets = useSafeAreaInsets();
 
   // Recargamos los datos al mostrar la pantalla para tener cifras al día
   useFocusEffect(
@@ -30,7 +32,7 @@ export default function SummaryScreen() {
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={styles.content}>
+      contentContainerStyle={[styles.content, { paddingTop: insets.top }]}>
       <Text style={styles.sectionTitle}>Resumen de tu colección</Text>
 
       <View style={styles.statCard}>

@@ -19,10 +19,12 @@ import {
   Text,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function AlbumListScreen() {
   const router = useRouter();
   const { albums, isLoading, loadAlbums } = useAlbums();
+  const insets = useSafeAreaInsets();
 
   // Recargamos la lista cada vez que la pantalla vuelve a estar visible
   useFocusEffect(
@@ -51,7 +53,7 @@ export default function AlbumListScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
       <FlatList
         data={albums}
         keyExtractor={(item) => String(item.id)}

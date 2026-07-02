@@ -27,7 +27,10 @@ export default function RootLayout() {
         />
 
         {/* Pantalla de edición de un álbum concreto */}
-        <Stack.Screen name="edit/[id]" options={{ title: 'Editar álbum' }} />
+        <Stack.Screen 
+          name="edit/[id]" 
+          options={{ title: 'Editar álbum', headerBackButtonDisplayMode: 'minimal' }}
+        />
       </Stack>
       <StatusBar style="light" />
     </>

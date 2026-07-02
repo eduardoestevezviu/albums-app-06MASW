@@ -65,7 +65,7 @@ export default function EditAlbumScreen() {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Pressable onPress={handleDelete} hitSlop={10}>
+        <Pressable onPress={handleDelete} hitSlop={10} style={{ marginLeft: 8 }}>
           <Ionicons name="trash-outline" size={22} color={colors.danger} />
         </Pressable>
       ),
